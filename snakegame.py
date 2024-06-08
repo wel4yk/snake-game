@@ -16,13 +16,15 @@ pygame.init()
 sc = pygame.display.set_mode([RES, RES])
 clock = pygame.time.Clock()
 font_score = pygame.font.SysFont('Arial', 26, bold=True)
-font_end = pygame.font.SysFont('Arial', 26, bold=True)
+font_end = pygame.font.SysFont('Arial', 72, bold=True)
+
+background = pygame.image.load("back.jpg")
 
 
 while True:
-    sc.fill(pygame.Color('black'))
+    sc.blit(background, (0, 0))
     # gvelis, vashlis daxatva
-    [(pygame.draw.rect(sc, pygame.Color('green'), (i, j, SIZE -2 , SIZE -2))) for i, j in snake]
+    [(pygame.draw.rect(sc, pygame.Color('green'), (i, j, SIZE - 2 , SIZE -2))) for i, j in snake]
     pygame.draw.rect(sc, pygame.Color('red'), (*apple, SIZE, SIZE))
     # score
     render_score = font_score.render(f'SCORE: {score}', 1, pygame.Color('orange'))
@@ -66,3 +68,5 @@ while True:
         dx, dy = -1, 0
     if key[pygame.K_d]:
         dx, dy = 1, 0
+
+    pygame.display.update()
